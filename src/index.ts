@@ -275,4 +275,47 @@ const employee: Employee = {
 };
 employee.name = "haider";
 
-// Decorators
+// 15. Namespace
+namespace Utils {
+  export function greet(name: string): string {
+    return `Hello, ${name}!`;
+  }
+
+  export function toUpperCase(str: string): string {
+    return str.toUpperCase();
+  }
+}
+// console.log(Utils.greet("Alice"));
+// console.log(Utils.toUpperCase("hello"));
+
+// 16. Decorators
+/* Decorators is a console or debugging tool; to trigger
+ the method in the #class everytime it called (start,end) */
+function logger(originalMethod: any, _context: any) {
+  function replacementMethod(this: any, ...args: any[]) {
+    console.log("start:", originalMethod.name);
+    const result = originalMethod.call(this, ...args);
+    console.log("end:", originalMethod.name);
+    return result;
+  }
+
+  return replacementMethod;
+}
+
+class User {
+  constructor(private name: string, private age: number) {}
+
+  @logger
+  greet() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+
+  @logger
+  printAge() {
+    console.log(`I am ${this.age} years old`);
+  }
+}
+
+const user = new User("Ron", 25);
+// user.greet();
+// user.printAge();
