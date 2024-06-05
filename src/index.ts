@@ -1,13 +1,11 @@
-// build and run command line::
+// Build and run command line::
 // tsc ./src/index.ts && node ./src/index.js
 
 let slaes: number = 123_456_789;
 let language: string = "TypeScript";
+
 // Any
 let level;
-function render(id: number) {
-  return id;
-}
 
 // Array
 let numbers: (string | number)[] = [1, 2, "4"];
@@ -28,11 +26,6 @@ function tax(income: number, year = 2022): number {
   if (year < 2023) return income * 1.2;
   return income * 1.4; // Undefined not a number
 }
-tax(10_000);
-
-// function greeter(fn: (a: string) => void) {
-//   fn("Hello there");
-// }
 
 // Obj && Type aliases
 type Employee = {
@@ -82,9 +75,7 @@ type Customer = {
 function getCustomer(id: number): Customer | null | undefined {
   return id === 0 ? null : { birthday: new Date() };
 }
-
 let customer = getCustomer(1);
-// console.log(customer?.birthday?.getFullYear);
 
 // The Nullish Coaelscing Operator
 let speed: number | null = null;
@@ -96,7 +87,7 @@ let ride = {
 };
 
 // <Type Assertions>
-// let phone = <HTMLInputElement>document.getElementById("phone");
+// let phone = <HTMLInputElement>window.document.getElementById("phone");
 // phone.value;
 
 // Class
@@ -117,9 +108,8 @@ class Account {
     return this._balance;
   }
 }
-let account = new Account(1, "haider", 0);
-account.deposite(139);
-// console.log(account, account instanceof Account, account.balance);
+let account = new Account(1, "haider", 125);
+// account.deposite(139);
 
 // Index Sinatures
 class SeatAssignment {
@@ -132,25 +122,7 @@ seat.A1 = "daij";
 class KeyValue<K, V> {
   constructor(public key: K, public value: V) {}
 }
-let pair = new KeyValue<number, string>(1, "");
-
-// Decorators
-type ComponentOption = {
-  selector: string;
-};
-function Component(options: ComponentOption) {
-  return (constructor: Function) => {
-    console.log("Component decorator called");
-    constructor.prototype.options = options;
-    constructor.prototype.uniqueId = Date.now();
-    constructor.prototype.insertDOM = () => {
-      console.log("Inserting the component in the DOM");
-    };
-  };
-}
-
-// @Component({ selector: "#my_profile" })
-// class ProfileComponent {}
+let pair = new KeyValue<number, boolean>(1, true);
 
 // Merge Strings Alternately
 function mergeAlternately(word1: string, word2: string): string {
@@ -170,24 +142,6 @@ function mergeAlternately(word1: string, word2: string): string {
   }
   return merged.join("");
 }
-
 // console.log(mergeAlternately("abc", "kds"));
 
-// Greatest Common Divisor of Strings
-// function gcdOfStrings(str1: string, str2: string): string {
-//   for (let i: number = Math.min(str1.length, str2.length); i > 0; i--) {
-//     const subStr = str1.substring(0, i);
-//     if (str1.length % i === 0 && str2.length % i === 0) {
-//       if (
-//         subStr.repeat(str1.length / i) === str1 &&
-//         subStr.repeat(str2.length / i) === str2
-//       ) {
-//         return subStr;
-//       }
-//     }
-//   }
-//   return "";
-// }
-// console.log(gcdOfStrings("ABCABC", "ABC")); // Output: "ABC"
-// console.log(gcdOfStrings("ABABAB", "ABAB")); // Output: "AB"
-// console.log(gcdOfStrings("LEET", "CODE")); // Output: ""
+// Decorators

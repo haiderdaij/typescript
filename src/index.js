@@ -1,11 +1,9 @@
+// Build and run command line::
+// tsc ./src/index.ts && node ./src/index.js
 var slaes = 123456789;
 var language = "TypeScript";
-console.log(typeof language);
 // Any
 var level;
-function render(id) {
-    return id;
-}
 // Array
 var numbers = [1, 2, "4"];
 // Tuples
@@ -25,7 +23,6 @@ function tax(income, year) {
         return income * 1.2;
     return income * 1.4; // Undefined not a number
 }
-tax(10000);
 var employee = {
     id: 1,
     retire: function (date) {
@@ -33,6 +30,13 @@ var employee = {
     },
 };
 employee.name = "haider";
+function wrapInArray(obj) {
+    if (typeof obj === "string") {
+        return [obj];
+    }
+    return obj;
+}
+console.log(wrapInArray(["Haider", "Daij"]));
 // Union Types
 function kgToLbs(weight) {
     if (typeof weight === "number")
@@ -50,7 +54,6 @@ function getCustomer(id) {
     return id === 0 ? null : { birthday: new Date() };
 }
 var customer = getCustomer(1);
-// console.log(customer?.birthday?.getFullYear);
 // The Nullish Coaelscing Operator
 var speed = null;
 var ride = {
@@ -60,7 +63,7 @@ var ride = {
     speed: speed !== null && speed !== void 0 ? speed : 30,
 };
 // <Type Assertions>
-// let phone = <HTMLInputElement>document.getElementById("phone");
+// let phone = <HTMLInputElement>window.document.getElementById("phone");
 // phone.value;
 // Class
 var Account = /** @class */ (function () {
@@ -83,9 +86,8 @@ var Account = /** @class */ (function () {
     });
     return Account;
 }());
-var account = new Account(1, "haider", 0);
-account.deposite(139);
-// console.log(account, account instanceof Account, account.balance);
+var account = new Account(1, "haider", 125);
+// account.deposite(139);
 // Index Sinatures
 var SeatAssignment = /** @class */ (function () {
     function SeatAssignment() {
@@ -102,19 +104,7 @@ var KeyValue = /** @class */ (function () {
     }
     return KeyValue;
 }());
-var pair = new KeyValue(1, "");
-function Component(options) {
-    return function (constructor) {
-        console.log("Component decorator called");
-        constructor.prototype.options = options;
-        constructor.prototype.uniqueId = Date.now();
-        constructor.prototype.insertDOM = function () {
-            console.log("Inserting the component in the DOM");
-        };
-    };
-}
-// @Component({ selector: "#my_profile" })
-// class ProfileComponent {}
+var pair = new KeyValue(1, true);
 // Merge Strings Alternately
 function mergeAlternately(word1, word2) {
     var a = 0;
@@ -133,21 +123,4 @@ function mergeAlternately(word1, word2) {
     return merged.join("");
 }
 // console.log(mergeAlternately("abc", "kds"));
-// Greatest Common Divisor of Strings
-// function gcdOfStrings(str1: string, str2: string): string {
-//   for (let i: number = Math.min(str1.length, str2.length); i > 0; i--) {
-//     const subStr = str1.substring(0, i);
-//     if (str1.length % i === 0 && str2.length % i === 0) {
-//       if (
-//         subStr.repeat(str1.length / i) === str1 &&
-//         subStr.repeat(str2.length / i) === str2
-//       ) {
-//         return subStr;
-//       }
-//     }
-//   }
-//   return "";
-// }
-// console.log(gcdOfStrings("ABCABC", "ABC")); // Output: "ABC"
-// console.log(gcdOfStrings("ABABAB", "ABAB")); // Output: "AB"
-// console.log(gcdOfStrings("LEET", "CODE")); // Output: ""
+// Decorators
